@@ -1,0 +1,173 @@
+---
+# Distribution Center parameters - This section will be specific to a Distribution Center.
+vsphere_server: "vc01.h2o-75-9210.h2o.vmware.com"
+vsphere_username: "administrator@vsphere.local"
+vsphere_password: "prompt"
+supervisor_cluster: "vc01cl01-wcp.h2o-75-9210.h2o.vmware.com"
+
+# What is the vsphere cluster name?
+cluster_name: vc01cl01
+vsphere_datacenter: vc01
+storage_class: "vc01cl01-t0compute"
+datastore: "vsanDatastore"
+distributed_switch: "vc01-dvs"
+content_library: "vc01cl01-wcp"
+
+# Workload Management settings...
+vsphere_namespace: "atl1-tkgs-ns1"
+workload_cluster: "atl1-tkgs-workload"
+
+# Network settings for the Supervisor cluster...
+supervisor_network_starting_ip: "10.220.30.139"
+supervisor_network_subnet_mask: "255.255.255.224"
+supervisor_network_gateway_ip: "10.220.30.158"
+
+# Workload network
+primary_workload_network_static_gateway_ipv4: "10.220.47.62"
+primary_workload_network_static_starting_address_ipv4: "10.220.47.12"
+primary_workload_network_static_address_count: "50"
+primary_workload_network_static_subnet_mask: "255.255.255.192"
+primary_workload_network_vsphere_portgroup_name: "user-workload"
+
+# Data network (VIP network)
+data_network_static_starting_address_ipv4: "10.220.47.1"
+data_network_static_address_count: "11"
+
+dns_servers: "10.220.136.2"
+#dns_servers: "10.79.2.6"
+dns_search_domain: "h2o-75-9210.h2o.vmware.com"
+ntp_servers: "10.188.26.119"
+
+avi_controller_ip: "avi.h2o-75-9210.h2o.vmware.com"
+#avi_network: "Avi Internal"
+avi_network: "esxi-mgmt"
+avi_subnet_mask: "255.255.255.224"
+avi_network_ip: "10.220.30.128/27"
+avi_default_gateway: "10.220.30.158"
+avi_content_library: "AVI"
+avi_ova_name: "controller-22.1.3-9096"
+avi_vm_name1: "avi01"
+avi_vm_ip1: "10.220.30.131"
+avi_vm_name2: "avi02"
+avi_vm_ip2: "10.220.30.132"
+avi_vm_name3: "avi03"
+avi_vm_ip3: "10.220.30.133"
+avi_floating_ip: "10.220.30.134"
+# Leaving one IP open for the AVI Floating VIP
+avi_se_starting_ip: "10.220.30.135"
+avi_se_ending_ip: "10.220.30.136"
+
+# This cert is created when AVI is installed.
+# It is a system-standard-portal type in AVI and is used to access the AVI by terraform.
+# We will really want to supply a signed cert at some point.
+avi_certificate: |
+  -----BEGIN CERTIFICATE-----
+  MIIEKDCCAxCgAwIBAgIUYxawQWIWeZXVemE7p3/amx6UZncwDQYJKoZIhvcNAQEL
+  BQAwgacxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIUGFsb0Fs
+  dG8xDzANBgNVBAoMBnZtd2FyZTEZMBcGA1UECwwQcGxhdGZvcm1zZXJ2aWNlczEn
+  MCUGA1UEAwweYXZpLmgyby03NS05MjEwLmgyby52bXdhcmUuY29tMSMwIQYJKoZI
+  hvcNAQkBFhRid2luZmllbGRAdm13YXJlLmNvbTAeFw0yMzA0MTIxNDE1MDBaFw0y
+  NDA0MTExNDE1MDBaMIGnMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExETAPBgNV
+  BAcMCFBhbG9BbHRvMQ8wDQYDVQQKDAZ2bXdhcmUxGTAXBgNVBAsMEHBsYXRmb3Jt
+  c2VydmljZXMxJzAlBgNVBAMMHmF2aS5oMm8tNzUtOTIxMC5oMm8udm13YXJlLmNv
+  bTEjMCEGCSqGSIb3DQEJARYUYndpbmZpZWxkQHZtd2FyZS5jb20wggEiMA0GCSqG
+  SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDHFbSq9aQ0b4xWvZUBze/qi0QYJBmgEY4D
+  EqPlewkbLZQmDtAT2zS4XKAD0k0T/sLbX992IgIt9KuPlk/PW+6w+WTsUx6W0YbF
+  B1c/xiGS3zbKfOaQK3ZZQYWaVlZVNpfkR4Kgr3YC7d0FWj5UgoUBycTqNvMelBVS
+  450o++0/zeslvuNLmFTWE4T+vE5ZPm0Goy1+RRfrBnrtSOOClrzjD72SM7686Mwm
+  iyVnlUpcyvH2yNasiKRakfWRDY51E9wJBGmLUp/eAnBFcot4FBGgWO3ZNgKgE9/N
+  f+Obi2ABWmXqE9EEZJzulvLQ95rb7dG9+Wk3700QQyiU9G6zbZi5AgMBAAGjSjBI
+  MEYGA1UdEQQ/MD2HBArcHoOHBArcHoSHBArcHoWHBArcHoaCA2F2aYIeYXZpLmgy
+  by03NS05MjEwLmgyby52bXdhcmUuY29tMA0GCSqGSIb3DQEBCwUAA4IBAQCnGYZm
+  5E0gfzrfVZ8Yf0oN8ZLW4DXdhwuvwBvWxy5uU6dHXRcHrpI4d4ZiAAp38WVyEq9G
+  tHHDk4dRbP2Y0IZT48gM6tl7UX9hmbV9Ym0JnqS1aWMW0wa1K9uhI9/hx/Y9SP7O
+  ekl9lB6HQhe4hmzdhFSINHbwgUX9SLhG0UKLPbKnN45AykxIzaSJf/LRmngLTMVS
+  Tb9S1vMT39k9k+SQt1xF4Yoyr81HoDsLjAHd4WoLfuCrCt+mzF3CQ2uS4FPC6XRO
+  kYaS4DXbW28ib0E7qQJa2WJjXVl4WZj4zYcr1LEYzhd6kHze/tTW7/rshcS+Np2V
+  x2YkLi649bVPJGJG
+  -----END CERTIFICATE-----
+
+# #################################################################################
+# This section contains parameters that are the same for each Distribution Center...
+vsphere_namespace_owner: "tkg-admin"
+vsphere_namespace_owner_domain: "local.os"
+
+tkg_user: "tkg-admin"
+tkg_user_password: "prompt"
+tkg_role: TKG
+
+# AVI user in vSphere used to deploy AVI Controller and SEs...
+avi_vsphere_username: "avi-admin"
+avi_vsphere_password: "prompt"
+avi_role: "AVI"
+# UNUSED: avi_vsphere_resource_pool: "AVI"
+
+# Admin username inside the AVI system; Use this to get access in the AVI UI.
+avi_username: "admin"
+avi_password: "prompt"
+avi_resource_pool: "AVI"
+
+supervisor_distributed_port_group: "esxi-mgmt"
+supervisor_network_name: "esxi-mgmt"
+supervisor_network_static_address_count: "5"
+
+cp_vmclass_size: "best-effort-medium"
+control_plane_count: "1"
+worker_node_count: "3"
+worker_vmclass_size: "best-effort-medium"
+ctrd_disksize: "25Gi"
+kubelet_disksize: "15Gi"
+tkr: "v1.22.9---vmware.1-tkg.1.cc71bc8"
+
+tanzu_package_registry: "projects.registry.vmware.com/tkg/packages/standard/repo"
+tanzu_package_registry_version: "v1.6.1"
+tanzu_standard_package_repo_name: "tanzupackages"
+installed_packages_namespace: "tanzu-packages"
+
+
+
+# Unused below here
+avi_ca_data_b64: 
+avi_cloud_name: 
+avi_control_plane_ha_provider: "true"
+avi_controller: 
+avi_data_network: 
+avi_data_network_cidr: 
+avi_enable: "true"
+avi_labels: ""
+avi_management_cluster_vip_network_name: 
+avi_management_cluster_vip_network_cidr: 
+avi_service_engine_group: 
+
+cluster_cidr: 100.96.0.0/11
+service_cidr: 100.64.0.0/13
+enable_audit_logging: "true"
+enable_ceip_participation: "true"
+enable_mhc: "true"
+mhc_unknown_status_timeout: 5m
+mhc_false_status_timeout: 12m
+identity_management_type: vsphere
+infrastructure_provider: vsphere
+
+tkg_http_proxy_enabled: "false"
+tkg_ip_family: ipv4
+
+## Parameters to create the Custom storage class inside the TKC workload cluster
+custom_storage_class_name: "dsr-app-storage"
+storage_policy_name: "tanzu-sp"
+reclaimpolicy_type: "Retain"
+volumebindingmode: "WaitForFirstConsumer"
+
+######################################################################
+# Unused
+# vsphere_control_plane_disk_gib: "40"
+# vsphere_control_plane_endpoint: 
+# vsphere_control_plane_mem_mib: "16384"
+# vsphere_control_plane_num_cpus: "4"
+# vsphere_insecure: "true"
+# vsphere_worker_disk_gib: "40"
+# vsphere_worker_mem_mib: "4096"
+# vsphere_worker_num_cpus: "2"
+# vip_network_interface: "eth0"
+
+# certificate_email: "me@vmware.com"
